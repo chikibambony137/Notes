@@ -3,7 +3,7 @@
     <CreateNoteBttn class="menu__create-button" @click="noteStore.addNote()"
       >New Note</CreateNoteBttn>
     <hr class="menu__hr" />
-    <NoteList></NoteList>
+    <NoteList @closeMenu="emit('closeMenu')"></NoteList>
   </div>
 </template>
 
@@ -13,6 +13,8 @@ import CreateNoteBttn from "./components/CreateNoteBttn.vue";
 import NoteList from "./components/NoteList.vue";
 
 const noteStore = useNoteStore();
+
+const emit = defineEmits('closeMenu');
 </script>
 
 <style lang="scss">

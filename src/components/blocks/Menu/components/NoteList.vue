@@ -3,7 +3,8 @@
     <NoteListItem
       v-for="note in noteStore.notes"
       :key="note.id"
-      :note="note"></NoteListItem>
+      :note="note"
+      @closeMenu="emit('closeMenu')"></NoteListItem>
   </div>
 </template>
 
@@ -12,6 +13,8 @@ import NoteListItem from "./NoteListItem.vue";
 import { useNoteStore } from "../../../../stores/useNoteStore.js";
 
 const noteStore = useNoteStore();
+
+const emit = defineEmits('closeMenu');
 </script>
 
 <style scoped>

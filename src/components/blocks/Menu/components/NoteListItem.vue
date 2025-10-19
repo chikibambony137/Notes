@@ -22,8 +22,10 @@ const props = defineProps({
   },
 });
 
+const emit = defineEmits('closeMenu');
 function openNote() {
   noteStore.openNote(props.note.id);
+  emit('closeMenu');
 }
 </script>
 

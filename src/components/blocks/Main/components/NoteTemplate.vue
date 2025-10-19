@@ -1,12 +1,14 @@
 <template>
   <div class="note-template">
-    <p>
+    <p style="display: flex">
       <input
         class="note-template__input note-template__input_title"
         v-model="title"
         @keyup.enter="nameRef.focus()"
         placeholder="Title"
         ref="titleRef" />
+
+      <MenuButton class="note-template__menu-bttn" @click="emit('openMenu')"/>
     </p>
     <p>
       <input
@@ -30,6 +32,7 @@
 import { onMounted, ref, watch } from "vue";
 
 import { useNoteStore } from "../../../../stores/useNoteStore";
+import MenuButton from "../../../ui/buttons/MenuButton.vue";
 
 // pinia store
 const noteStore = useNoteStore();
@@ -89,6 +92,8 @@ watch(name, () =>
 watch(content, () =>
   noteStore.setValue(noteStore.currentNote?.id, content.value, "content")
 );
+
+const emit = defineEmits('openMenu');
 </script>
 
 <style scoped lang="scss">
@@ -113,6 +118,14 @@ p {
 .note-template__input_title {
   font-size: 1.6rem;
   font-weight: 500;
+}
+
+.note-template__menu-bttn {
+  display: none;
+
+  @media (max-width: 480px) {
+    display: flex;
+  }
 }
 
 .note-template__input_name {
