@@ -1,6 +1,6 @@
 <template>
   <div class="menu">
-    <CreateNoteBttn class="menu__create-button" @click="noteStore.addNote()"
+    <CreateNoteBttn class="menu__create-button" @click="noteStore.addNote(); emit('closeMenu')"
       >New Note</CreateNoteBttn>
     <hr class="menu__hr" />
     <NoteList @closeMenu="emit('closeMenu')"></NoteList>
